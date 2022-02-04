@@ -4,10 +4,11 @@ import 'package:flutter/material.dart';
 
 class ItemTransferencia extends StatelessWidget {
   final TransferenciaModel _transferencia;
-  final ItemTransferenciaDataModel _itemTransferenciaData =
-      const ItemTransferenciaDataModel('R\$', Icons.monetization_on);
+  final ItemTransferenciaDataModel _itemTransferenciaData;
 
-  const ItemTransferencia(this._transferencia, {Key? key}) : super(key: key);
+  const ItemTransferencia(this._transferencia, this._itemTransferenciaData,
+      {Key? key})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
