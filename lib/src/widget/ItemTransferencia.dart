@@ -16,10 +16,13 @@ class ItemTransferencia extends StatelessWidget {
       child: ListTile(
         leading: Icon(_itemTransferenciaData.icone),
         title: Text(
-          _itemTransferenciaData.moeda + ' ' + _transferencia.valor.toString(),
+          'Valor: ' +
+              _itemTransferenciaData.moeda +
+              ' ' +
+              _transferencia.valor.toString(),
         ),
         subtitle: Text(
-          _transferencia.numeroConta.toString(),
+          'Conta: ' + _transferencia.numeroConta.toString(),
         ),
       ),
     );

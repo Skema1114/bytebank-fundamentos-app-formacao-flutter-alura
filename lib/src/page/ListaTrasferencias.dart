@@ -1,3 +1,4 @@
+import 'package:bytebank_fundamentos_app_formacao_flutter_alura/src/App.dart';
 import 'package:bytebank_fundamentos_app_formacao_flutter_alura/src/controller/ListaTrasferenciasController.dart';
 import 'package:bytebank_fundamentos_app_formacao_flutter_alura/src/model/ItemTransferenciaDataModel.dart';
 import 'package:bytebank_fundamentos_app_formacao_flutter_alura/src/model/TransferenciaModel.dart';
@@ -16,12 +17,27 @@ class ListaTransferencias extends StatefulWidget {
 class _ListaTransferenciasState extends State<ListaTransferencias> {
   final ListaTrasferenciasController _controller =
       ListaTrasferenciasController();
+  bool isDarkMode = false;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Transferências'),
+        actions: [
+          Padding(
+            padding: const EdgeInsets.only(right: 20.0),
+            child: Switch(
+              value: isDarkMode,
+              onChanged: (value) {
+                setState(() {
+                  isDarkMode = value;
+                  changeTheme(value);
+                });
+              },
+            ),
+          ),
+        ],
       ),
       body: ListView.builder(
         itemCount: widget._transferencias.length,
@@ -46,7 +62,9 @@ class _ListaTransferenciasState extends State<ListaTransferencias> {
           (transferenciaRecebida) {
             if (transferenciaRecebida != null) {
               debugPrint('TRANSFERENCIA RECEBIDA NÃO É NULA');
-              widget._transferencias.add(transferenciaRecebida);
+              setState(() {
+                widget._transferencias.add(transferenciaRecebida);
+              });
             }
             debugPrint(' ===================> CHEGOU NO THEN DO FUTURE');
             debugPrint(' ===================> $transferenciaRecebida');
