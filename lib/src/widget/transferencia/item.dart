@@ -1,12 +1,14 @@
-import 'package:bytebank_fundamentos_app_formacao_flutter_alura/src/model/ItemTransferenciaDataModel.dart';
-import 'package:bytebank_fundamentos_app_formacao_flutter_alura/src/model/TransferenciaModel.dart';
 import 'package:flutter/material.dart';
+import 'package:bytebank_app/src/utils/strings.dart';
+import 'package:bytebank_app/src/model/transferencia/model.dart';
+import 'package:bytebank_app/src/model/transferencia/item_data_model.dart';
 
 class ItemTransferencia extends StatelessWidget {
   final TransferenciaModel _transferencia;
   final ItemTransferenciaDataModel _itemTransferenciaData;
+  final Strings _strings = Strings();
 
-  const ItemTransferencia(this._transferencia, this._itemTransferenciaData,
+  ItemTransferencia(this._transferencia, this._itemTransferenciaData,
       {Key? key})
       : super(key: key);
 
@@ -16,13 +18,14 @@ class ItemTransferencia extends StatelessWidget {
       child: ListTile(
         leading: Icon(_itemTransferenciaData.icone),
         title: Text(
-          'Valor: ' +
+          _strings.valorItemTransferencia +
               _itemTransferenciaData.moeda +
               ' ' +
               _transferencia.valor.toString(),
         ),
         subtitle: Text(
-          'Conta: ' + _transferencia.numeroConta.toString(),
+          _strings.contaItemTransferencia +
+              _transferencia.numeroConta.toString(),
         ),
       ),
     );

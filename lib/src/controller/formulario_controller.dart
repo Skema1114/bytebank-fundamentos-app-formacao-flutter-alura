@@ -1,7 +1,7 @@
-import 'package:bytebank_fundamentos_app_formacao_flutter_alura/src/model/TransferenciaModel.dart';
 import 'package:flutter/material.dart';
+import 'package:bytebank_app/src/model/transferencia/model.dart';
 
-class FormularioTransferenciasController {
+class FormularioTransferenciaController {
   //
   void criarTransferencia(
       String numeroContaParam, String valorParam, BuildContext context) {
@@ -13,9 +13,6 @@ class FormularioTransferenciasController {
         valor: valor,
         numeroConta: numeroConta,
       );
-
-      debugPrint(' ===================> CRIADA A TRANSFERENCIA');
-      debugPrint(' ===================> $transferenciaCriada');
 
       Navigator.pop(context, transferenciaCriada);
 

@@ -1,4 +1,4 @@
-import 'package:bytebank_fundamentos_app_formacao_flutter_alura/src/App.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:bytebank_app/src/App.dart';
 
 void main() => runApp(const App());

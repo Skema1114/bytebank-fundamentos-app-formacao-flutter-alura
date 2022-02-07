@@ -1,6 +1,6 @@
-import 'package:bytebank_fundamentos_app_formacao_flutter_alura/src/model/TextFieldTransferenciaDataModel.dart';
-import 'package:bytebank_fundamentos_app_formacao_flutter_alura/src/model/TransferenciaFormModel.dart';
 import 'package:flutter/material.dart';
+import 'package:bytebank_app/src/model/transferencia/form_model.dart';
+import 'package:bytebank_app/src/model/transferencia/text_field_data_model.dart';
 
 class TextFieldFormularioTransferencia extends StatelessWidget {
   final TransferenciaFormModel _transferencia;

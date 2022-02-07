@@ -1,29 +1,30 @@
-import 'package:bytebank_fundamentos_app_formacao_flutter_alura/src/App.dart';
-import 'package:bytebank_fundamentos_app_formacao_flutter_alura/src/controller/ListaTrasferenciasController.dart';
-import 'package:bytebank_fundamentos_app_formacao_flutter_alura/src/model/ItemTransferenciaDataModel.dart';
-import 'package:bytebank_fundamentos_app_formacao_flutter_alura/src/model/TransferenciaModel.dart';
-import 'package:bytebank_fundamentos_app_formacao_flutter_alura/src/widget/ItemTransferencia.dart';
 import 'package:flutter/material.dart';
+import 'package:bytebank_app/src/utils/strings.dart';
+import 'package:bytebank_app/src/model/transferencia/model.dart';
+import 'package:bytebank_app/src/widget/transferencia/item.dart';
+import 'package:bytebank_app/src/model/transferencia/item_data_model.dart';
+import 'package:bytebank_app/src/controller/transferencia/lista_controller.dart';
 
-class ListaTransferencias extends StatefulWidget {
+class ListaTransferencia extends StatefulWidget {
   final List<TransferenciaModel> _transferencias = [];
 
-  ListaTransferencias({Key? key}) : super(key: key);
+  ListaTransferencia({Key? key}) : super(key: key);
 
   @override
-  State<ListaTransferencias> createState() => _ListaTransferenciasState();
+  State<ListaTransferencia> createState() => _ListaTransferenciaState();
 }
 
-class _ListaTransferenciasState extends State<ListaTransferencias> {
-  final ListaTrasferenciasController _controller =
-      ListaTrasferenciasController();
+class _ListaTransferenciaState extends State<ListaTransferencia> {
+  final ListaTransferenciaController _controller =
+      ListaTransferenciaController();
+  final Strings _strings = Strings();
   bool isDarkMode = false;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Transferências'),
+        title: Text(_strings.transferenciasListaTransferencia),
         actions: [
           Padding(
             padding: const EdgeInsets.only(right: 20.0),
@@ -32,7 +33,7 @@ class _ListaTransferenciasState extends State<ListaTransferencias> {
               onChanged: (value) {
                 setState(() {
                   isDarkMode = value;
-                  changeTheme(value);
+                  //changeTheme(value);
                 });
               },
             ),
@@ -42,15 +43,13 @@ class _ListaTransferenciasState extends State<ListaTransferencias> {
       body: ListView.builder(
         itemCount: widget._transferencias.length,
         itemBuilder: (context, indice) {
-          debugPrint("MONTOU O ITEM");
-
           return ItemTransferencia(
             TransferenciaModel(
               valor: widget._transferencias[indice].valor,
               numeroConta: widget._transferencias[indice].numeroConta,
             ),
-            const ItemTransferenciaDataModel(
-              moeda: 'R\$',
+            ItemTransferenciaDataModel(
+              moeda: _strings.moedaListaTransferencia,
               icone: Icons.monetization_on,
             ),
           );
@@ -61,13 +60,10 @@ class _ListaTransferenciasState extends State<ListaTransferencias> {
         onPressed: () => _controller.acaoFloatingActionButton(context).then(
           (transferenciaRecebida) {
             if (transferenciaRecebida != null) {
-              debugPrint('TRANSFERENCIA RECEBIDA NÃO É NULA');
               setState(() {
                 widget._transferencias.add(transferenciaRecebida);
               });
             }
-            debugPrint(' ===================> CHEGOU NO THEN DO FUTURE');
-            debugPrint(' ===================> $transferenciaRecebida');
           },
         ),
       ),
